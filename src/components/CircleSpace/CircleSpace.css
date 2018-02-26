@@ -1,0 +1,14 @@
+.CircleSpace {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.CircleSpace-hole {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 100%;
+  box-shadow: 0px 0px 0px 2000px blue;
+}
