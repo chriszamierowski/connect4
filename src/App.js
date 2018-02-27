@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import Grid from 'components/Grid/Grid'
+import Game from 'components/Game/Game'
+import Disc from 'components/Disc/Disc'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Grid />
+        <Disc />
+        <Game />
       </div>
     );
   }

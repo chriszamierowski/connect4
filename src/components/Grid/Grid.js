@@ -6,8 +6,11 @@ class Grid extends Component {
   render() {
     return (
       <div className="Grid">
-        {[...Array(7)].map((v, col) => {
-          return <Column key={col} />
+        {[...Array(this.props.numColumns)].map((v, col) => {
+          return <Column
+            key={col}
+            onColumnChoice={() => this.props.onColumnChoice(col)}
+            numRows={this.props.numRows} />
         })}
       </div>
     );

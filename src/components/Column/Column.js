@@ -3,12 +3,16 @@ import './Column.css';
 import CircleSpace from 'components/CircleSpace/CircleSpace'
 
 class Column extends Component {
+  constructor (props) {
+    super(props)
+  }
   render() {
-    const rows = 6
-
     return (
       <div className="Column">
-        {[...Array(rows)].map((v, row) => {
+        <button
+          onClick={this.onColumnChoice}
+          >Choose</button>
+        {[...Array(this.props.numRows)].map((v, row) => {
           return <CircleSpace key={row} />
         })}
       </div>
