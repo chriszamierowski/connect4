@@ -3,3 +3,9 @@
   height: 80%;
   width: 80%;
 }
+
+.Grid-column {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}

@@ -4,7 +4,7 @@ import './Disc.css';
 class Disc extends Component {
   render() {
     return (
-      <div className="Disc"></div>
+      <div className={`Disc Disc-player${this.props.value}`}></div>
     );
   }
 }

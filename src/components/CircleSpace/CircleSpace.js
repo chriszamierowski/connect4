@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './CircleSpace.css';
+import Disc from 'components/Disc/Disc'
 
 class CircleSpace extends Component {
   constructor(props) {
@@ -27,6 +28,11 @@ class CircleSpace extends Component {
     window.removeEventListener('resize', this.updateDimensions.bind(this));
   }
 
+  renderDisc () {
+    return <Disc
+            value={this.props.value} />
+  }
+
   render() {
     return (
       <div
@@ -37,7 +43,7 @@ class CircleSpace extends Component {
           width: this.state.diameter,
           marginTop: - this.state.diameter / 2,
           marginLeft: - this.state.diameter / 2,
-        }}></span>
+        }}>{this.props.value && this.renderDisc()}</span>
       </div>
     );
   }

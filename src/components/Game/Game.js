@@ -10,7 +10,8 @@ class Game extends Component {
     this.numRows = 6
 
     this.state = {
-      board: Array(this.numColumns * this.numRows).fill(null)
+      board: Array(this.numColumns * this.numRows).fill(null),
+      player1Turn: true
     }
   }
 
@@ -21,7 +22,11 @@ class Game extends Component {
 
     for (; ind >= 0; ind -= this.numColumns) {
       if (!board[ind]) {
-        board[ind] = true
+        board[ind] = this.state.player1Turn ? 1 : 2
+
+        this.setState({
+          player1Turn: !this.state.player1Turn
+        })
         break;
       }
     }
@@ -32,11 +37,14 @@ class Game extends Component {
   }
 
   render() {
+    const board = this.state.board.slice()
+
     return (
       <Grid
         numColumns={this.numColumns}
         numRows={this.numRows}
-        onColumnChoice={(col) => this.handleColumnChoice(col)} />
+        onColumnChoice={(col) => this.handleColumnChoice(col)}
+        board={board} />
     );
   }
 }
