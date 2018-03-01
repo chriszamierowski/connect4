@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import './Game.css';
 import Grid from 'components/Grid/Grid'
 
 class Game extends Component {
@@ -40,11 +40,16 @@ class Game extends Component {
     const board = this.state.board.slice()
 
     return (
-      <Grid
-        numColumns={this.numColumns}
-        numRows={this.numRows}
-        onColumnChoice={(col) => this.handleColumnChoice(col)}
-        board={board} />
+      <div className="Game">
+        <div className="Game-info">
+          <p>{this.state.player1Turn ? 'player1' : 'player2'}</p>
+        </div>
+        <Grid
+          numColumns={this.numColumns}
+          numRows={this.numRows}
+          onColumnChoice={(col) => this.handleColumnChoice(col)}
+          board={board} />
+      </div>
     );
   }
 }

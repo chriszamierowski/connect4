@@ -1,7 +1,14 @@
 .Grid {
   display: flex;
-  height: 80%;
-  width: 80%;
+  align-items: center;
+  justify-content: center;
+}
+
+.Grid-inner {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
 }
 
 .Grid-column {

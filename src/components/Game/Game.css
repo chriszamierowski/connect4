@@ -1,0 +1,13 @@
+.Game {
+  height: 95vh;
+  width: 95vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.Game-info {
+}
+
+.Grid {
+  flex-grow: 1;
+}
