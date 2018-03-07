@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Grid.css';
 import CircleSpace from 'components/CircleSpace/CircleSpace'
+import PropTypes from 'prop-types';
 
 class Grid extends Component {
   constructor(props) {
@@ -57,6 +58,18 @@ class Grid extends Component {
       </div>
     );
   }
+}
+
+Grid.propTypes = {
+  numColumns: PropTypes.number,
+  numRows: PropTypes.number,
+  onColumnChoice: PropTypes.func.isRequired,
+  board: PropTypes.array.isRequired
+}
+
+Grid.defaultProps = {
+  numColumns: 6,
+  numRows: 7
 }
 
 export default Grid;

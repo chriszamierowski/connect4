@@ -6,8 +6,8 @@ class Game extends Component {
   constructor (props) {
     super(props)
 
-    this.numColumns = 7
-    this.numRows = 6
+    this.numColumns = 4
+    this.numRows = 9
 
     this.state = {
       board: Array(this.numColumns * this.numRows).fill(null),
