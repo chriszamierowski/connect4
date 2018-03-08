@@ -10,9 +10,3 @@
   width: 100%;
   display: flex;
 }
-
-.Grid-column {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}

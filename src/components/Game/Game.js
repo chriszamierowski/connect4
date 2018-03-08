@@ -113,8 +113,9 @@ class Game extends Component {
           <p>{this.getGameStatus()}</p>
         </div>
         <Grid
-          onColumnChoice={(col) => this.handleColumnChoice(col)}
-          board={board} />
+          onColumnChoice={(columnNum) => this.handleColumnChoice(columnNum)}
+          board={board}
+          gameOver={this.state.gameOver} />
       </div>
     );
   }

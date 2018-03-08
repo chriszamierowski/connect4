@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Grid.css';
-import CircleSpace from 'components/CircleSpace/CircleSpace'
+import Column from 'components/Column/Column'
 import PropTypes from 'prop-types';
 
 class Grid extends Component {
@@ -13,13 +13,6 @@ class Grid extends Component {
     this.state = {
       constrainedSquareDimension: 0
     }
-  }
-
-  renderCircleSpace (colInd, rowInd) {
-    const circleValue = this.props.board[colInd][rowInd]
-    return <CircleSpace
-            key={rowInd}
-            value={circleValue} />
   }
 
   componentDidMount() {
@@ -49,12 +42,12 @@ class Grid extends Component {
             height: this.state.constrainedSquareDimension * this.numRows + 'px',
             width: this.state.constrainedSquareDimension * this.numColumns + 'px'
           }}>
-          {[...Array(this.numColumns)].map((col, colInd) => {
-            return <div className="Grid-column" key={colInd} onClick={() => this.props.onColumnChoice(colInd)}>
-              {[...Array(this.numRows)].map((row, rowInd) => {
-                return this.renderCircleSpace(colInd, rowInd)
-              })}
-            </div>
+          {this.props.board.map((column, i) => {
+            return <Column
+              key={i}
+              column={column}
+              onClick={() => this.props.onColumnChoice(i)}
+              isDisabled={this.props.gameOver} />
           })}
         </div>
       </div>
@@ -74,7 +67,8 @@ Grid.propTypes = {
     ) {
       return new Error('Board must be a multidimensional array at least 4x4')
     }
-  }
+  },
+  gameOver: PropTypes.bool
 }
 
 export default Grid;
