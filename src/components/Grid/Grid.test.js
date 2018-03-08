@@ -17,13 +17,22 @@ const grid = () => {
 beforeEach(() => {
   props = {
     onColumnChoice: jest.fn(),
-    board: []
+    board: [
+      [null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null],
+    ]
   };
   mountedGrid = undefined;
 });
 
-it('renders without crashing', () => {
-  grid()
+describe('when supplied with a proper board', () => {
+  it('renders without crashing', () => {
+    grid()
+  })
 })
 
 // TODO - add tests for render()

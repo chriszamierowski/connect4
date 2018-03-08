@@ -7,16 +7,18 @@ class Grid extends Component {
   constructor(props) {
     super(props);
 
+    this.numColumns = this.props.board.length
+    this.numRows = this.props.board[0].length
+
     this.state = {
       constrainedSquareDimension: 0
     }
   }
 
   renderCircleSpace (colInd, rowInd) {
-    const key = (rowInd * this.props.numColumns) + colInd
-    const circleValue = this.props.board[key]
+    const circleValue = this.props.board[colInd][rowInd]
     return <CircleSpace
-            key={key}
+            key={rowInd}
             value={circleValue} />
   }
 
@@ -26,8 +28,8 @@ class Grid extends Component {
   }
 
   updateDimensions() {
-    const spaceHeight = this.el.clientHeight / this.props.numRows
-    const spaceWidth = this.el.clientWidth / this.props.numColumns
+    const spaceHeight = this.el.clientHeight / this.numRows
+    const spaceWidth = this.el.clientWidth / this.numColumns
     // figure out the smaller dimension to keep each space a square
     const constrainedSquareDimension = spaceHeight > spaceWidth ? spaceWidth : spaceHeight
 
@@ -44,12 +46,12 @@ class Grid extends Component {
         ref={ (el) => this.el = el}>
         <div className="Grid-inner"
           style={{
-            height: this.state.constrainedSquareDimension * this.props.numRows + 'px',
-            width: this.state.constrainedSquareDimension * this.props.numColumns + 'px'
+            height: this.state.constrainedSquareDimension * this.numRows + 'px',
+            width: this.state.constrainedSquareDimension * this.numColumns + 'px'
           }}>
-          {[...Array(this.props.numColumns)].map((col, colInd) => {
+          {[...Array(this.numColumns)].map((col, colInd) => {
             return <div className="Grid-column" key={colInd} onClick={() => this.props.onColumnChoice(colInd)}>
-              {[...Array(this.props.numRows)].map((row, rowInd) => {
+              {[...Array(this.numRows)].map((row, rowInd) => {
                 return this.renderCircleSpace(colInd, rowInd)
               })}
             </div>
@@ -61,15 +63,18 @@ class Grid extends Component {
 }
 
 Grid.propTypes = {
-  numColumns: PropTypes.number,
-  numRows: PropTypes.number,
   onColumnChoice: PropTypes.func.isRequired,
-  board: PropTypes.array.isRequired
-}
-
-Grid.defaultProps = {
-  numColumns: 6,
-  numRows: 7
+  board: (props, propName) => {
+    if (
+      !props.board
+      || !Array.isArray(props.board)
+      || props.board.length < 4
+      || !Array.isArray(props.board[0])
+      || props.board[0].length < 4
+    ) {
+      return new Error('Board must be a multidimensional array at least 4x4')
+    }
+  }
 }
 
 export default Grid;
