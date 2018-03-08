@@ -1,17 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Grid from './Grid';
-import { mount } from 'enzyme';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Grid from './Grid'
+import { mount } from 'enzyme'
 
-let props;
-let mountedGrid;
+let props
+let mountedGrid
 const grid = () => {
   if (!mountedGrid) {
-    mountedGrid = mount(
-      <Grid {...props} />
-    );
+    mountedGrid = mount(<Grid {...props} />)
   }
-  return mountedGrid;
+  return mountedGrid
 }
 
 beforeEach(() => {
@@ -23,11 +21,11 @@ beforeEach(() => {
       [null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null],
       [null, null, null, null, null, null, null],
-      [null, null, null, null, null, null, null],
+      [null, null, null, null, null, null, null]
     ]
-  };
-  mountedGrid = undefined;
-});
+  }
+  mountedGrid = undefined
+})
 
 describe('when supplied with a proper board', () => {
   it('renders without crashing', () => {

@@ -1,18 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Column from './Column';
-import CircleSpace from 'components/CircleSpace/CircleSpace';
-import { mount } from 'enzyme';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Column from './Column'
+import CircleSpace from 'components/CircleSpace/CircleSpace'
+import { mount } from 'enzyme'
 
-let props;
-let mountedColumn;
+let props
+let mountedColumn
 const column = () => {
   if (!mountedColumn) {
-    mountedColumn = mount(
-      <Column {...props} />
-    );
+    mountedColumn = mount(<Column {...props} />)
   }
-  return mountedColumn;
+  return mountedColumn
 }
 
 beforeEach(() => {
@@ -20,9 +18,9 @@ beforeEach(() => {
     onClick: jest.fn(),
     column: [null, 2, 1],
     isDisabled: undefined
-  };
-  mountedColumn = undefined;
-});
+  }
+  mountedColumn = undefined
+})
 
 it('renders without crashing', () => {
   column()
@@ -41,10 +39,10 @@ describe('when not disabled', () => {
         onClick: jest.fn(),
         column: [null, 2, 1],
         isDisabled: undefined
-      };
+      }
 
       thisColumn = column()
-    });
+    })
 
     it('isClickable should be true', () => {
       expect(thisColumn.instance().isClickable()).toBeTruthy()
@@ -57,10 +55,10 @@ describe('when not disabled', () => {
         onClick: jest.fn(),
         column: [1, 2, 1],
         isDisabled: undefined
-      };
+      }
 
       thisColumn = column()
-    });
+    })
 
     it('isClickable should be false', () => {
       expect(thisColumn.instance().isClickable()).toBeFalsy()
@@ -77,10 +75,10 @@ describe('when disabled', () => {
         onClick: jest.fn(),
         column: [null, 2, 1],
         isDisabled: true
-      };
+      }
 
       thisColumn = column()
-    });
+    })
 
     it('isClickable should be false', () => {
       expect(thisColumn.instance().isClickable()).toBeFalsy()
@@ -93,10 +91,10 @@ describe('when disabled', () => {
         onClick: jest.fn(),
         column: [1, 2, 1],
         isDisabled: true
-      };
+      }
 
       thisColumn = column()
-    });
+    })
 
     it('isClickable should be false', () => {
       expect(thisColumn.instance().isClickable()).toBeFalsy()
@@ -110,7 +108,10 @@ describe('the <CircleSpace /> component', () => {
 
   beforeEach(() => {
     thisColumn = column()
-    receivedProps = thisColumn.find(CircleSpace).at(1).props()
+    receivedProps = thisColumn
+      .find(CircleSpace)
+      .at(1)
+      .props()
   })
 
   it('receives value', () => {

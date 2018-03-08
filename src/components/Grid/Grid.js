@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import './Grid.css';
+import React, { Component } from 'react'
+import './Grid.css'
 import Column from 'components/Column/Column'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 class Grid extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.numColumns = this.props.board.length
     this.numRows = this.props.board[0].length
@@ -17,41 +17,47 @@ class Grid extends Component {
 
   componentDidMount() {
     this.updateDimensions()
-    window.addEventListener('resize', this.updateDimensions.bind(this));
+    window.addEventListener('resize', this.updateDimensions.bind(this))
   }
 
   updateDimensions() {
     const spaceHeight = this.el.clientHeight / this.numRows
     const spaceWidth = this.el.clientWidth / this.numColumns
     // figure out the smaller dimension to keep each space a square
-    const constrainedSquareDimension = spaceHeight > spaceWidth ? spaceWidth : spaceHeight
+    const constrainedSquareDimension =
+      spaceHeight > spaceWidth ? spaceWidth : spaceHeight
 
     this.setState({ constrainedSquareDimension })
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDimensions.bind(this));
+    window.removeEventListener('resize', this.updateDimensions.bind(this))
   }
 
   render() {
     return (
-      <div className="Grid"
-        ref={ (el) => this.el = el}>
-        <div className="Grid-inner"
+      <div className="Grid" ref={el => (this.el = el)}>
+        <div
+          className="Grid-inner"
           style={{
             height: this.state.constrainedSquareDimension * this.numRows + 'px',
-            width: this.state.constrainedSquareDimension * this.numColumns + 'px'
-          }}>
+            width:
+              this.state.constrainedSquareDimension * this.numColumns + 'px'
+          }}
+        >
           {this.props.board.map((column, i) => {
-            return <Column
-              key={i}
-              column={column}
-              onClick={() => this.props.onColumnChoice(i)}
-              isDisabled={this.props.gameOver} />
+            return (
+              <Column
+                key={i}
+                column={column}
+                onClick={() => this.props.onColumnChoice(i)}
+                isDisabled={this.props.gameOver}
+              />
+            )
           })}
         </div>
       </div>
-    );
+    )
   }
 }
 
@@ -59,11 +65,11 @@ Grid.propTypes = {
   onColumnChoice: PropTypes.func.isRequired,
   board: (props, propName) => {
     if (
-      !props.board
-      || !Array.isArray(props.board)
-      || props.board.length < 4
-      || !Array.isArray(props.board[0])
-      || props.board[0].length < 4
+      !props.board ||
+      !Array.isArray(props.board) ||
+      props.board.length < 4 ||
+      !Array.isArray(props.board[0]) ||
+      props.board[0].length < 4
     ) {
       return new Error('Board must be a multidimensional array at least 4x4')
     }
@@ -71,4 +77,4 @@ Grid.propTypes = {
   gameOver: PropTypes.bool
 }
 
-export default Grid;
+export default Grid

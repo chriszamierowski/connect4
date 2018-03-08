@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import './Game.css';
+import React, { Component } from 'react'
+import './Game.css'
 import Grid from 'components/Grid/Grid'
 
 class Game extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.numColumns = 7
@@ -20,7 +20,7 @@ class Game extends Component {
     }
   }
 
-  handleColumnChoice (columnNum) {
+  handleColumnChoice(columnNum) {
     let board = this.state.board.slice()
     let column = board[columnNum].slice()
     const firstAvailableRow = this.getFirstAvailableRowInColumn(column)
@@ -33,7 +33,7 @@ class Game extends Component {
         moveCount: this.state.moveCount + 1
       })
 
-      if(this.checkForWin({ player: this.state.player1Turn ? 1 : 2, board })) {
+      if (this.checkForWin({ player: this.state.player1Turn ? 1 : 2, board })) {
         this.setState({
           gameWon: true,
           gameOver: true
@@ -55,7 +55,10 @@ class Game extends Component {
   }
 
   getFirstAvailableRowInColumn(column) {
-    return column.map((c, i) => c ? null : i).filter(Number.isInteger).pop()
+    return column
+      .map((c, i) => (c ? null : i))
+      .filter(Number.isInteger)
+      .pop()
   }
 
   checkForWin({ player, board }) {
@@ -63,37 +66,57 @@ class Game extends Component {
     const numRows = board[0].length
 
     // horizontal
-    for (let row = 0; row < numRows  - 3; row++){
-      for (let col = 0; col < numColumns; col++){
-        if (board[col][row] === player && board[col][row + 1] === player && board[col][row + 2] === player && board[col][row + 3] === player){
-          return true;
+    for (let row = 0; row < numRows - 3; row++) {
+      for (let col = 0; col < numColumns; col++) {
+        if (
+          board[col][row] === player &&
+          board[col][row + 1] === player &&
+          board[col][row + 2] === player &&
+          board[col][row + 3] === player
+        ) {
+          return true
         }
       }
     }
     // vertical
-    for (let col = 0; col < numColumns - 3; col++){
-      for (let row = 0; row < this.numRows; row++){
-        if (board[col][row] === player && board[col + 1][row] === player && board[col + 2][row] === player && board[col + 3][row] === player){
-          return true;
+    for (let col = 0; col < numColumns - 3; col++) {
+      for (let row = 0; row < this.numRows; row++) {
+        if (
+          board[col][row] === player &&
+          board[col + 1][row] === player &&
+          board[col + 2][row] === player &&
+          board[col + 3][row] === player
+        ) {
+          return true
         }
       }
     }
     // bottom left -> top right
-    for (let col = 3; col < numColumns; col++){
-      for (let row = 0; row < numRows - 3; row++){
-        if (board[col][row] === player && board[col - 1][row + 1] === player && board[col - 2][row + 2] === player && board[col - 3][row + 3] === player)
-          return true;
+    for (let col = 3; col < numColumns; col++) {
+      for (let row = 0; row < numRows - 3; row++) {
+        if (
+          board[col][row] === player &&
+          board[col - 1][row + 1] === player &&
+          board[col - 2][row + 2] === player &&
+          board[col - 3][row + 3] === player
+        )
+          return true
       }
     }
     // top left -> bottom right
-    for (let col = 3; col < numColumns; col++){
-      for (let row = 3; row < numRows; row++){
-        if (board[col][row] === player && board[col - 1][row - 1] === player && board[col - 2][row - 2] === player && board[col - 3][row - 3] === player)
-          return true;
+    for (let col = 3; col < numColumns; col++) {
+      for (let row = 3; row < numRows; row++) {
+        if (
+          board[col][row] === player &&
+          board[col - 1][row - 1] === player &&
+          board[col - 2][row - 2] === player &&
+          board[col - 3][row - 3] === player
+        )
+          return true
       }
     }
 
-    return false;
+    return false
   }
 
   getGameStatus() {
@@ -113,12 +136,13 @@ class Game extends Component {
           <p>{this.getGameStatus()}</p>
         </div>
         <Grid
-          onColumnChoice={(columnNum) => this.handleColumnChoice(columnNum)}
+          onColumnChoice={columnNum => this.handleColumnChoice(columnNum)}
           board={board}
-          gameOver={this.state.gameOver} />
+          gameOver={this.state.gameOver}
+        />
       </div>
-    );
+    )
   }
 }
 
-export default Game;
+export default Game

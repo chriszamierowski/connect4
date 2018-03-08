@@ -1,25 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Game from './Game';
-import Grid from './../Grid/Grid';
-import { mount } from 'enzyme';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Game from './Game'
+import Grid from './../Grid/Grid'
+import { mount } from 'enzyme'
 
-let props;
-let mountedGame;
+let props
+let mountedGame
 const game = () => {
   if (!mountedGame) {
-    mountedGame = mount(
-      <Game {...props} />
-    );
+    mountedGame = mount(<Game {...props} />)
   }
-  return mountedGame;
+  return mountedGame
 }
 
 beforeEach(() => {
-  props = {
-  };
-  mountedGame = undefined;
-});
+  props = {}
+  mountedGame = undefined
+})
 
 it('renders without crashing', () => {
   game()
@@ -66,159 +63,186 @@ describe('the <Grid /> component', () => {
 it('getFirstAvailableRowInColumn() returns first (from bottom aka last in array) row space available', () => {
   const thisGame = game()
 
-  expect(thisGame.instance().getFirstAvailableRowInColumn([ null, null, 2, 2, 1])).toEqual(1)
-  expect(thisGame.instance().getFirstAvailableRowInColumn([ null, null, null])).toEqual(2)
-  expect(thisGame.instance().getFirstAvailableRowInColumn([ 1, 1, 1])).not.toBeDefined()
+  expect(
+    thisGame.instance().getFirstAvailableRowInColumn([null, null, 2, 2, 1])
+  ).toEqual(1)
+  expect(
+    thisGame.instance().getFirstAvailableRowInColumn([null, null, null])
+  ).toEqual(2)
+  expect(
+    thisGame.instance().getFirstAvailableRowInColumn([1, 1, 1])
+  ).not.toBeDefined()
 })
 
 describe('check for win', () => {
   it('should return false if no winner', () => {
     const thisGame = game()
 
-    expect(thisGame.instance().checkForWin({
-      player: 1,
-      board: [
-        [null, null, 2, 2],
-        [null, null, 1, 2],
-        [null, 1, 2, 2],
-        [null, 1, 1, 1],
-      ]
-    })).toBeFalsy()
-    expect(thisGame.instance().checkForWin({
-      player: 1,
-      board: [
-        [null, null, null, null, 1, 2],
-        [null, null, null, null, 2, 2],
-        [null, 1, 1, 1, 2, 1],
-        [null, null, 1, 1, 2, 2],
-        [null, null, null, 2, 1, 1]
-      ]
-    })).toBeFalsy()
-    expect(thisGame.instance().checkForWin({
-      player: 1,
-      board: [
-        [null, null, 1, 1, 2, 1],
-        [null, null, 2, 2, 1, 2],
-        [null, null, 1, 2, 2, 1],
-        [null, null, 2, 1, 2, 2],
-        [null, null, 1, 2, 1, 1]
-      ]
-    })).toBeFalsy()
+    expect(
+      thisGame.instance().checkForWin({
+        player: 1,
+        board: [
+          [null, null, 2, 2],
+          [null, null, 1, 2],
+          [null, 1, 2, 2],
+          [null, 1, 1, 1]
+        ]
+      })
+    ).toBeFalsy()
+    expect(
+      thisGame.instance().checkForWin({
+        player: 1,
+        board: [
+          [null, null, null, null, 1, 2],
+          [null, null, null, null, 2, 2],
+          [null, 1, 1, 1, 2, 1],
+          [null, null, 1, 1, 2, 2],
+          [null, null, null, 2, 1, 1]
+        ]
+      })
+    ).toBeFalsy()
+    expect(
+      thisGame.instance().checkForWin({
+        player: 1,
+        board: [
+          [null, null, 1, 1, 2, 1],
+          [null, null, 2, 2, 1, 2],
+          [null, null, 1, 2, 2, 1],
+          [null, null, 2, 1, 2, 2],
+          [null, null, 1, 2, 1, 1]
+        ]
+      })
+    ).toBeFalsy()
   })
 
   it('should detect horizontal wins', () => {
     const thisGame = game()
 
-    expect(thisGame.instance().checkForWin({
-      player: 1,
-      board: [
-        [null, null, 2, 2],
-        [null, null, 1, 2],
-        [null, 1, 2, 2],
-        [1, 1, 1, 1],
-      ]
-    })).toBeTruthy()
-    expect(thisGame.instance().checkForWin({
-      player: 1,
-      board: [
-        [null, null, null, null, 2, 2],
-        [null, null, null, null, 1, 2],
-        [1, 1, 1, 1, 2, 1],
-        [null, null, 1, 1, 2, 2],
-        [null, null, null, 2, 1, 1]
-      ]
-    })).toBeTruthy()
-    expect(thisGame.instance().checkForWin({
-      player: 1,
-      board: [
-        [null, null, 1, 1, 1, 1],
-        [null, null, 2, 2, 1, 2],
-        [null, null, 1, 2, 2, 1],
-        [null, null, 1, 2, 2, 2],
-        [null, null, null, 2, 1, 1]
-      ]
-    })).toBeTruthy()
+    expect(
+      thisGame.instance().checkForWin({
+        player: 1,
+        board: [
+          [null, null, 2, 2],
+          [null, null, 1, 2],
+          [null, 1, 2, 2],
+          [1, 1, 1, 1]
+        ]
+      })
+    ).toBeTruthy()
+    expect(
+      thisGame.instance().checkForWin({
+        player: 1,
+        board: [
+          [null, null, null, null, 2, 2],
+          [null, null, null, null, 1, 2],
+          [1, 1, 1, 1, 2, 1],
+          [null, null, 1, 1, 2, 2],
+          [null, null, null, 2, 1, 1]
+        ]
+      })
+    ).toBeTruthy()
+    expect(
+      thisGame.instance().checkForWin({
+        player: 1,
+        board: [
+          [null, null, 1, 1, 1, 1],
+          [null, null, 2, 2, 1, 2],
+          [null, null, 1, 2, 2, 1],
+          [null, null, 1, 2, 2, 2],
+          [null, null, null, 2, 1, 1]
+        ]
+      })
+    ).toBeTruthy()
   })
 
   it('should detect vertical wins', () => {
     const thisGame = game()
 
-    expect(thisGame.instance().checkForWin({
-      player: 1,
-      board: [
-        [1, 1, 2, 2],
-        [null, 1, 1, 2],
-        [null, 1, 2, 2],
-        [null, 1, 2, 1],
-      ]
-    })).toBeTruthy()
-    expect(thisGame.instance().checkForWin({
-      player: 1,
-      board: [
-        [null, null, null, 1, 2, 2],
-        [2, 2, 2, 1, 1, 2],
-        [null, 1, 1, 1, 2, 1],
-        [null, null, 1, 1, 2, 2],
-        [null, null, 2, 2, 1, 1]
-      ]
-    })).toBeTruthy()
-    expect(thisGame.instance().checkForWin({
-      player: 1,
-      board: [
-        [null, null, null, null, null, null],
-        [null, null, 2, 2, 1, 1],
-        [null, null, 1, 2, 2, 1],
-        [null, null, 1, 2, 2, 1],
-        [null, null, null, 2, 1, 1]
-      ]
-    })).toBeTruthy()
+    expect(
+      thisGame.instance().checkForWin({
+        player: 1,
+        board: [[1, 1, 2, 2], [null, 1, 1, 2], [null, 1, 2, 2], [null, 1, 2, 1]]
+      })
+    ).toBeTruthy()
+    expect(
+      thisGame.instance().checkForWin({
+        player: 1,
+        board: [
+          [null, null, null, 1, 2, 2],
+          [2, 2, 2, 1, 1, 2],
+          [null, 1, 1, 1, 2, 1],
+          [null, null, 1, 1, 2, 2],
+          [null, null, 2, 2, 1, 1]
+        ]
+      })
+    ).toBeTruthy()
+    expect(
+      thisGame.instance().checkForWin({
+        player: 1,
+        board: [
+          [null, null, null, null, null, null],
+          [null, null, 2, 2, 1, 1],
+          [null, null, 1, 2, 2, 1],
+          [null, null, 1, 2, 2, 1],
+          [null, null, null, 2, 1, 1]
+        ]
+      })
+    ).toBeTruthy()
   })
 
   it('should detect diagonal wins', () => {
     const thisGame = game()
 
-    expect(thisGame.instance().checkForWin({
-      player: 1,
-      board: [
-        [1, 1, 2, 2],
-        [null, 1, 1, 2],
-        [null, 1, 1, 2],
-        [null, null, 2, 1],
-      ]
-    })).toBeTruthy()
-    expect(thisGame.instance().checkForWin({
-      player: 1,
-      board: [
-        [null, null, null, 2, 2, 2],
-        [null,  2, 2, 1, 1, 2],
-        [null, 1, 1, 1, 2, 1],
-        [null, null, 1, 1, 2, 2],
-        [null, 1, 2, 2, 1, 1]
-      ]
-    })).toBeTruthy()
-    expect(thisGame.instance().checkForWin({
-      player: 1,
-      board: [
-        [null, null, null, 2, 1, null],
-        [null, null, 2, 1, 1, 1],
-        [null, null, 1, 2, 2, 1],
-        [null, 1, 1, 2, 2, 2],
-        [null, null, 2, 2, 1, 1]
-      ]
-    })).toBeTruthy()
+    expect(
+      thisGame.instance().checkForWin({
+        player: 1,
+        board: [
+          [1, 1, 2, 2],
+          [null, 1, 1, 2],
+          [null, 1, 1, 2],
+          [null, null, 2, 1]
+        ]
+      })
+    ).toBeTruthy()
+    expect(
+      thisGame.instance().checkForWin({
+        player: 1,
+        board: [
+          [null, null, null, 2, 2, 2],
+          [null, 2, 2, 1, 1, 2],
+          [null, 1, 1, 1, 2, 1],
+          [null, null, 1, 1, 2, 2],
+          [null, 1, 2, 2, 1, 1]
+        ]
+      })
+    ).toBeTruthy()
+    expect(
+      thisGame.instance().checkForWin({
+        player: 1,
+        board: [
+          [null, null, null, 2, 1, null],
+          [null, null, 2, 1, 1, 1],
+          [null, null, 1, 2, 2, 1],
+          [null, 1, 1, 2, 2, 2],
+          [null, null, 2, 2, 1, 1]
+        ]
+      })
+    ).toBeTruthy()
   })
 
   it('should detect wins for both players', () => {
     const thisGame = game()
 
-    expect(thisGame.instance().checkForWin({
-      player: 2,
-      board: [
-        [1, 1, 2, 2],
-        [null, 1, 2, 1],
-        [null, 1, 2, 2],
-        [null, null, 2, 1],
-      ]
-    })).toBeTruthy()
+    expect(
+      thisGame.instance().checkForWin({
+        player: 2,
+        board: [
+          [1, 1, 2, 2],
+          [null, 1, 2, 1],
+          [null, 1, 2, 2],
+          [null, null, 2, 1]
+        ]
+      })
+    ).toBeTruthy()
   })
 })

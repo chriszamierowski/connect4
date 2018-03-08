@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
 import Game from 'components/Game/Game'
 
 class App extends Component {
@@ -8,8 +8,8 @@ class App extends Component {
       <div className="App">
         <Game />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

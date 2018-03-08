@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import './CircleSpace.css';
+import React, { Component } from 'react'
+import './CircleSpace.css'
 import Disc from 'components/Disc/Disc'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 class CircleSpace extends Component {
   renderDisc() {
@@ -10,11 +10,12 @@ class CircleSpace extends Component {
 
   render() {
     return (
-      <div
-        className="CircleSpace">
-        <span className="CircleSpace-hole">{this.props.value && this.renderDisc()}</span>
+      <div className="CircleSpace">
+        <span className="CircleSpace-hole">
+          {this.props.value && this.renderDisc()}
+        </span>
       </div>
-    );
+    )
   }
 }
 
@@ -22,4 +23,4 @@ CircleSpace.propTypes = {
   value: PropTypes.number
 }
 
-export default CircleSpace;
+export default CircleSpace

@@ -1,26 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Disc from './../Disc/Disc';
-import CircleSpace from './CircleSpace';
-import { shallow } from 'enzyme';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Disc from './../Disc/Disc'
+import CircleSpace from './CircleSpace'
+import { shallow } from 'enzyme'
 
-let props;
-let shallowCircleSpace;
+let props
+let shallowCircleSpace
 const circleSpace = () => {
   if (!shallowCircleSpace) {
-    shallowCircleSpace = shallow(
-      <CircleSpace {...props} />
-    );
+    shallowCircleSpace = shallow(<CircleSpace {...props} />)
   }
-  return shallowCircleSpace;
+  return shallowCircleSpace
 }
 
 beforeEach(() => {
   props = {
-    value: undefined,
-  };
-  shallowCircleSpace = undefined;
-});
+    value: undefined
+  }
+  shallowCircleSpace = undefined
+})
 
 it('renders without crashing', () => {
   circleSpace()
@@ -34,8 +32,8 @@ describe('when props.value is undefined', () => {
 
 describe('when props.value is defined', () => {
   beforeEach(() => {
-    props.value = 1;
-  });
+    props.value = 1
+  })
 
   it('renders a Disc', () => {
     expect(circleSpace().find(Disc)).toHaveLength(1)

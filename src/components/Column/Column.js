@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import CircleSpace from 'components/CircleSpace/CircleSpace'
-import './Column.css';
+import './Column.css'
 
 class Column extends Component {
   isClickable() {
@@ -12,21 +12,22 @@ class Column extends Component {
     return (
       <div
         className={`Column ${this.isClickable() ? 'Column--clickable' : ''}`}
-        onClick={() => { if (this.isClickable()) this.props.onClick() }}>
+        onClick={() => {
+          if (this.isClickable()) this.props.onClick()
+        }}
+      >
         {this.props.column.map((row, i) => {
-          return <CircleSpace
-            key={i}
-            value={row} />
+          return <CircleSpace key={i} value={row} />
         })}
       </div>
-    );
+    )
   }
 }
 
 Column.propTypes = {
   onClick: PropTypes.func.isRequired,
   column: PropTypes.array.isRequired,
-  isDisabled: PropTypes.bool,
+  isDisabled: PropTypes.bool
 }
 
-export default Column;
+export default Column
