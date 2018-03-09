@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Bowlby+One+SC&Open+Sans');
+
 $white: #fafcff;
 $black: #36383a;
 $red: #d21616;
 $yellow: #f5df41;
-$grid-color: #2367ee;
+$primary: #2367ee;
+$grid-color: $primary;
 $grid-color--light: lighten($grid-color, 10);
 $grid-color--dark: darken($grid-color, 10);
 $grid-color--darker: darken($grid-color, 20);
@@ -14,3 +17,55 @@ $screen-lg-min: 1200px;
 $screen-xs-max: ($screen-sm-min - 1);
 $screen-sm-max: ($screen-md-min - 1);
 $screen-md-max: ($screen-lg-min - 1);
+
+$font-primary: 'Open Sans', sans-serif;
+$font-heading: 'Bowlby One SC', sans-serif;
+
+@keyframes bounceInDown {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate3d(0, 25px, 0);
+  }
+
+  75% {
+    transform: translate3d(0, -10px, 0);
+  }
+
+  90% {
+    transform: translate3d(0, 5px, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes bounceOutUp {
+  20% {
+    transform: translate3d(0, -10px, 0);
+  }
+
+  40%,
+  45% {
+    opacity: 1;
+    transform: translate3d(0, 20px, 0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, -2000px, 0);
+  }
+}

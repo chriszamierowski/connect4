@@ -1,3 +1,5 @@
+@import 'styles/_vars.scss';
+
 .Game {
   height: 95vh;
   width: 95vw;
@@ -11,4 +13,23 @@
 
 .Grid {
   flex-grow: 1;
+}
+
+.Modal--content.Modal--intro {
+  padding-top: 0;
+  margin-top: 0;
+  text-align: center;
+  position: relative;
+
+  h1 {
+    color: $red;
+    font-size: 3em;
+    font-family: $font-heading;
+  }
+
+  .Button {
+    margin: 1.5em auto 0;
+    display: block;
+    width: 100%;
+  }
 }

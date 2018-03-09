@@ -1,0 +1,16 @@
+@import 'styles/_vars.scss';
+
+.Button {
+  background-color: $primary;
+  border-radius: 2em;
+  color: $white;
+  padding: 0.6em 1.6em;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  outline: none;
+  font-size: 1.3em;
+}
+
+.Button:hover {
+  background-color: darken($primary, 10);
+}

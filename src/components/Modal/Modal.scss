@@ -1,0 +1,32 @@
+@import 'styles/_vars.scss';
+
+.Modal--content {
+  border-radius: 2px;
+  background-color: $white;
+  padding: 1.5em 3em;
+  outline: none;
+  color: $black;
+  box-shadow: 2px 2px 4px rgba($black, 0.5);
+}
+
+.ReactModal__Content--after-open {
+  animation-name: bounceInDown;
+  animation-duration: 1s;
+}
+
+.ReactModal__Content--before-close {
+  animation-name: bounceOutUp;
+  animation-duration: 1s;
+}
+
+.Modal--overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba($black, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
