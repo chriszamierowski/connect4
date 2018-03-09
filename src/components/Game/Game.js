@@ -26,14 +26,14 @@ class Game extends Component {
     const firstAvailableRow = this.getFirstAvailableRowInColumn(column)
 
     if (Number.isInteger(firstAvailableRow)) {
-      column[firstAvailableRow] = this.state.player1Turn ? 1 : 2
+      column[firstAvailableRow] = this.getNextToPlay()
       board[columnNum] = column
 
       this.setState({
         moveCount: this.state.moveCount + 1
       })
 
-      if (this.checkForWin({ player: this.state.player1Turn ? 1 : 2, board })) {
+      if (this.checkForWin({ player: this.getNextToPlay(), board })) {
         this.setState({
           gameWon: true,
           gameOver: true
@@ -119,6 +119,10 @@ class Game extends Component {
     return false
   }
 
+  getNextToPlay() {
+    return this.state.player1Turn ? 1 : 2
+  }
+
   getGameStatus() {
     return this.state.gameOver
       ? this.state.gameWon
@@ -139,6 +143,7 @@ class Game extends Component {
           onColumnChoice={columnNum => this.handleColumnChoice(columnNum)}
           board={board}
           gameOver={this.state.gameOver}
+          nextToPlay={this.getNextToPlay()}
         />
       </div>
     )

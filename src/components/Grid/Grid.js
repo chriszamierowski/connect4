@@ -54,6 +54,7 @@ class Grid extends Component {
                 column={column}
                 onClick={() => this.props.onColumnChoice(i)}
                 isDisabled={this.props.gameOver}
+                nextToPlay={this.props.nextToPlay}
               />
             )
           })}
@@ -76,7 +77,8 @@ Grid.propTypes = {
       return new Error('Board must be a multidimensional array at least 4x4')
     }
   },
-  gameOver: PropTypes.bool
+  gameOver: PropTypes.bool,
+  nextToPlay: PropTypes.number
 }
 
 export default Grid

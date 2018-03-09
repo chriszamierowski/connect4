@@ -55,6 +55,10 @@ describe('the <Grid /> component', () => {
     expect(receivedProps.board).toEqual(thisGame.state().board)
   })
 
+  it('receives nextToPlay', () => {
+    expect(receivedProps.nextToPlay).toBeDefined()
+  })
+
   // TODO - add test for onColumnChoice
 })
 

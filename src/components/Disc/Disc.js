@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 class Disc extends Component {
   render() {
-    return <div className={`Disc Disc-player${this.props.value}`} />
+    return <div className={`Disc Disc-player${this.props.value || ''}`} />
   }
 }
 
