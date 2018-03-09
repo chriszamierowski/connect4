@@ -1,3 +1,5 @@
+@import 'styles/_vars.scss';
+
 .CircleSpace {
   position: relative;
   width: 100%;
@@ -12,5 +14,5 @@
   left: 15%;
   top: 15%;
   border-radius: 100%;
-  box-shadow: 0px 0px 0px 2000px blue;
+  box-shadow: 0px 0px 0px 2000px $grid-color;
 }
