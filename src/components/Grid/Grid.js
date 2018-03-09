@@ -23,9 +23,11 @@ class Grid extends Component {
   updateDimensions() {
     const spaceHeight = this.el.clientHeight / this.numRows
     const spaceWidth = this.el.clientWidth / this.numColumns
+    // gives some extra room for CSS add-ons
+    const shrinkCoefficient = 0.9
     // figure out the smaller dimension to keep each space a square
     const constrainedSquareDimension =
-      spaceHeight > spaceWidth ? spaceWidth : spaceHeight
+      (spaceHeight > spaceWidth ? spaceWidth : spaceHeight) * shrinkCoefficient
 
     this.setState({ constrainedSquareDimension })
   }

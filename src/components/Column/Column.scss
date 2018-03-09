@@ -1,8 +1,32 @@
+@import 'styles/_vars.scss';
+
 .Column {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   position: relative;
+  z-index: 1;
+}
+
+.Column::before {
+  content: '';
+  position: absolute;
+  width: calc(100% - .5em);
+  top: -1.3em;
+  left: 0em;
+  border-top: 0.3em solid desaturate($grid-color--darker, 30);
+  border-left: 0.1em solid transparent;
+  border-right: 0.1em solid transparent;
+  height: 0;
+  z-index: -1;
+}
+
+.Column:first-child::before {
+  border-left: 0;
+}
+
+.Column:last-child::before {
+  border-right: 0;
 }
 
 .Column.Column--clickable {
@@ -18,5 +42,5 @@
   bottom: -2px;
   left: -2px;
   border: 2px solid red;
-  z-index: 1;
+  z-index: 10;
 }

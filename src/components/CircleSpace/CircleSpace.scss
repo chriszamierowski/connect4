@@ -7,6 +7,31 @@
   flex-grow: 1;
 }
 
+// gridlines
+.CircleSpace:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  border-radius: 0.1em;
+  box-shadow: inset 0 0 0.3em 0 transparentize($grid-color--dark, 0.3), inset 0 0 0.8em 0 transparentize($grid-color--light, 0.5);
+}
+
+// rim
+.CircleSpace:after {
+  content: '';
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  left: 15%;
+  top: 15%;
+  border-radius: 100%;
+  z-index: 1;
+  box-shadow: 0 0 0.1em 0.1em $grid-color--dark, 0 0 0.4em 0.3em $grid-color--light, 0 0 0 0.6em $grid-color--dark;
+}
+
+// background
 .CircleSpace-hole {
   position: absolute;
   width: 70%;
@@ -14,5 +39,30 @@
   left: 15%;
   top: 15%;
   border-radius: 100%;
-  box-shadow: 0px 0px 0px 2000px $grid-color;
+  box-shadow: 0 0 0 100vh $grid-color;
+}
+
+// interior
+.CircleSpace-hole:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: -7%;
+  border-radius: 100%;
+  z-index: -1;
+  box-shadow: 0 0 0 1em desaturate($grid-color--darker, 30);
+}
+
+// rim shadow
+.CircleSpace-hole:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  top: 2%;
+  border-radius: 100%;
+  box-shadow: 0 0.5em 0.1em 0.1em $grid-color--darker;
 }
