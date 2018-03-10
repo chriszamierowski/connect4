@@ -3,10 +3,14 @@
 .Modal--content {
   border-radius: 2px;
   background-color: $white;
-  padding: 1.5em 3em;
+  padding: 1em;
   outline: none;
   color: $black;
   box-shadow: 2px 2px 4px rgba($black, 0.5);
+
+  @media screen and (min-width: $screen-xs-min) {
+    padding: 1.5em 3em;
+  }
 }
 
 .ReactModal__Content--after-open {

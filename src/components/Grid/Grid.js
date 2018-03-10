@@ -21,10 +21,10 @@ class Grid extends Component {
   }
 
   updateDimensions() {
-    const spaceHeight = this.el.clientHeight / this.numRows
+    const spaceHeight = this.el.clientHeight / (this.numRows + 1)
     const spaceWidth = this.el.clientWidth / this.numColumns
     // gives some extra room for CSS add-ons
-    const shrinkCoefficient = 0.9
+    const shrinkCoefficient = 1
     // figure out the smaller dimension to keep each space a square
     const constrainedSquareDimension =
       (spaceHeight > spaceWidth ? spaceWidth : spaceHeight) * shrinkCoefficient
@@ -38,7 +38,13 @@ class Grid extends Component {
 
   render() {
     return (
-      <div className="Grid" ref={el => (this.el = el)}>
+      <div
+        className="Grid"
+        ref={el => (this.el = el)}
+        style={{
+          paddingTop: this.state.constrainedSquareDimension + 'px'
+        }}
+      >
         <div
           className="Grid-inner"
           style={{

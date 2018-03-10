@@ -3,6 +3,17 @@ import './Modal.css'
 import PropTypes from 'prop-types'
 import ReactModal from 'react-modal'
 
+// needed to avoid error for ReactModal.setAppElement
+if (process.env.NODE_ENV === 'test') {
+  let root = document.createElement('div')
+  root.id = 'root'
+
+  document
+    .getElementsByTagName('body')
+    .item(0)
+    .appendChild(root)
+}
+
 ReactModal.setAppElement('#root')
 
 class Modal extends Component {

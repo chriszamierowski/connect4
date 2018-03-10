@@ -9,6 +9,33 @@
 }
 
 .Game-info {
+  font-family: $font-heading;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+
+  @media screen and (min-width: $screen-xs-min) {
+    flex-direction: row;
+  }
+}
+
+.Game-info-result {
+  transition: transform 0.3s ease-in;
+  transform: scale(2);
+  order: 1;
+
+  &:empty {
+    transform: scale(0);
+  }
+
+  @media screen and (min-width: $screen-xs-min) {
+    order: unset;
+  }
+
+  @media screen and (min-width: $screen-md-min) {
+    transform: scale(3);
+  }
 }
 
 .Grid {

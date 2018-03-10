@@ -9,6 +9,8 @@ $grid-color: $primary;
 $grid-color--light: lighten($grid-color, 10);
 $grid-color--dark: darken($grid-color, 10);
 $grid-color--darker: darken($grid-color, 20);
+$player1: $red;
+$player2: $yellow;
 
 $screen-xs-min: 480px;
 $screen-sm-min: 768px;

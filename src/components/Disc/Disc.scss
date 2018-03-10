@@ -1,7 +1,7 @@
 @import 'styles/_vars.scss';
 
 .Disc {
-  background-color: $red;
+  background-color: $player1;
   width: 100%;
   height: 100%;
   border-radius: 100%;
@@ -9,7 +9,7 @@
 }
 
 .Disc-player2 {
-  background-color: $yellow;
+  background-color: $player2;
 }
 
 .Disc::before {
@@ -34,10 +34,10 @@
   left: -1%;
   top: -3%;
   border-radius: 100%;
-  background-color: darken($red, 10);
+  background-color: darken($player1, 10);
   z-index: -1;
 }
 
 .Disc-player2::after {
-  background-color: darken($yellow, 10);
+  background-color: darken($player2, 10);
 }

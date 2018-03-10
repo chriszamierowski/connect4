@@ -1,0 +1,66 @@
+@import 'styles/_vars.scss';
+
+.PlayerInfo {
+  position: relative;
+  font-family: $font-heading;
+  font-size: 1.5em;
+  color: $player1;
+  text-shadow: 1px 1px 0 $black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2em;
+
+  &.PlayerInfo-player2 {
+    color: $player2;
+
+    .PlayerInfo--name:after {
+      background-color: $player2;
+    }
+  }
+
+  .Disc {
+    height: 2em;
+    width: 2em;
+    margin: 0 0.5em 0 0;
+    box-shadow: 1px 1px 0 $black;
+
+    &:after {
+      display: none;
+    }
+
+    @media screen and (min-width: $screen-xs-min) {
+      margin: 0 auto 0.5em;
+    }
+  }
+
+  &.PlayerInfo-turn {
+    .PlayerInfo--name:after {
+      visibility: visible;
+      transform: scaleX(1);
+    }
+  }
+
+  @media screen and (min-width: $screen-xs-min) {
+    flex-direction: column;
+  }
+}
+
+.PlayerInfo--name {
+  position: relative;
+  margin: 0;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    visibility: hidden;
+    background-color: $player1;
+    transition: all 0.2s;
+    box-shadow: 1px 1px 0 $black;
+    transform: scaleX(0);
+  }
+}

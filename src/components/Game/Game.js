@@ -4,6 +4,7 @@ import Grid from 'components/Grid/Grid'
 import Modal from 'components/Modal/Modal'
 import Button from 'components/Button/Button'
 import Select from 'components/Select/Select'
+import PlayerInfo from 'components/PlayerInfo/PlayerInfo'
 
 class Game extends Component {
   constructor(props) {
@@ -11,6 +12,8 @@ class Game extends Component {
 
     this.defaultNumColumns = 7
     this.defaultNumRows = 6
+    this.player1 = 1
+    this.player2 = 2
 
     const minNumColumns = 4
     const maxNumColumns = 20
@@ -29,7 +32,6 @@ class Game extends Component {
       player1Turn: true,
       showIntro: true,
       gameWon: false,
-      gameOver: false,
       moveCount: 0
     }
   }
@@ -43,18 +45,13 @@ class Game extends Component {
       column[firstAvailableRow] = this.getNextToPlay()
       board[columnNum] = column
 
-      this.setState({
-        moveCount: this.state.moveCount + 1
-      })
+      this.setState((prevState, props) => ({
+        moveCount: prevState.moveCount + 1
+      }))
 
       if (this.checkForWin({ player: this.getNextToPlay(), board })) {
         this.setState({
-          gameWon: true,
-          gameOver: true
-        })
-      } else if (this.state.moveCount === this.numRows * this.numColumns - 1) {
-        this.setState({
-          gameOver: true
+          gameWon: true
         })
       } else {
         this.setState({
@@ -68,6 +65,13 @@ class Game extends Component {
     }
   }
 
+  gameIsOver() {
+    return (
+      this.state.moveCount === this.state.numRows * this.state.numColumns ||
+      this.state.gameWon
+    )
+  }
+
   getFirstAvailableRowInColumn(column) {
     return column
       .map((c, i) => (c ? null : i))
@@ -79,7 +83,7 @@ class Game extends Component {
     const numColumns = board.length
     const numRows = board[0].length
 
-    // horizontal
+    // vertical
     for (let row = 0; row < numRows - 3; row++) {
       for (let col = 0; col < numColumns; col++) {
         if (
@@ -92,9 +96,9 @@ class Game extends Component {
         }
       }
     }
-    // vertical
+    // horizontal
     for (let col = 0; col < numColumns - 3; col++) {
-      for (let row = 0; row < this.numRows; row++) {
+      for (let row = 0; row < numRows; row++) {
         if (
           board[col][row] === player &&
           board[col + 1][row] === player &&
@@ -134,15 +138,15 @@ class Game extends Component {
   }
 
   getNextToPlay() {
-    return this.state.player1Turn ? 1 : 2
+    return this.state.player1Turn ? this.player1 : this.player2
   }
 
   getGameStatus() {
-    return this.state.gameOver
+    return this.gameIsOver()
       ? this.state.gameWon
-        ? `${this.state.player1Turn ? 'player1' : 'player2'} wins!`
-        : 'Draw'
-      : this.state.player1Turn ? 'player1' : 'player2'
+        ? `Player ${this.state.player1Turn ? this.player1 : this.player2} Wins!`
+        : 'Draw!'
+      : ''
   }
 
   playGame() {
@@ -162,7 +166,7 @@ class Game extends Component {
         <Grid
           onColumnChoice={columnNum => this.handleColumnChoice(columnNum)}
           board={board}
-          gameOver={this.state.gameOver}
+          gameOver={this.gameIsOver()}
           nextToPlay={this.getNextToPlay()}
         />
       )
@@ -173,7 +177,15 @@ class Game extends Component {
     return (
       this.state.board && (
         <div className="Game-info">
-          <p>{this.getGameStatus()}</p>
+          <PlayerInfo
+            value={this.player1}
+            isTheirTurn={this.state.player1Turn}
+          />
+          <p className="Game-info-result">{this.getGameStatus()}</p>
+          <PlayerInfo
+            value={this.player2}
+            isTheirTurn={!this.state.player1Turn}
+          />
         </div>
       )
     )

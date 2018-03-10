@@ -26,20 +26,35 @@ it(`starts as player 1's turn`, () => {
   expect(game().state().player1Turn).toBeTruthy()
 })
 
-it('toggles text depending on whose turn it is', () => {
+it('declares a winner when game is over', () => {
   const thisGame = game()
-  const text1 = thisGame.find('div.Game-info p').text()
-
   thisGame.setState({
-    player1Turn: !thisGame.state().player1Turn
+    player1Turn: true,
+    gameWon: false,
+    board: [[null, null, 2, 2], [2, 1, 1, 2], [null, 1, 2, 2], [null, 1, 1, 1]]
   })
 
-  const text2 = thisGame.find('div.Game-info p').text()
-  expect(text1).not.toEqual(text2)
+  expect(thisGame.find('.Game-info-result').text()).toEqual('')
+
+  thisGame.setState({
+    player1Turn: true,
+    gameWon: true,
+    board: [[null, 1, 2, 2], [2, 1, 1, 2], [null, 1, 2, 2], [null, 1, 1, 1]]
+  })
+
+  expect(thisGame.find('.Game-info-result').text()).toEqual('Player 1 Wins!')
 })
 
-it('renders a <Grid /> component', () => {
-  expect(game().find(Grid)).toHaveLength(1)
+it(`renders a <Grid /> component if there's a board`, () => {
+  const thisGame = game()
+
+  expect(thisGame.find(Grid)).toHaveLength(0)
+
+  thisGame.setState({
+    board: [[null, 1, 2, 2], [2, 1, 1, 2], [null, 1, 2, 2], [null, 1, 1, 1]]
+  })
+
+  expect(thisGame.find(Grid)).toHaveLength(1)
 })
 
 describe('the <Grid /> component', () => {
@@ -48,6 +63,9 @@ describe('the <Grid /> component', () => {
 
   beforeEach(() => {
     thisGame = game()
+    thisGame.setState({
+      board: [[null, 1, 2, 2], [2, 1, 1, 2], [null, 1, 2, 2], [null, 1, 1, 1]]
+    })
     receivedProps = thisGame.find(Grid).props()
   })
 
