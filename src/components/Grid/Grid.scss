@@ -7,7 +7,7 @@
   font-size: 0.5em;
 }
 
-.Grid-inner {
+.Grid--inner {
   position: absolute;
   display: flex;
   padding: 1em;
@@ -15,18 +15,18 @@
   border-left: 0.5em solid $grid-color;
   border-right: 0.5em solid $grid-color;
   box-sizing: border-box;
-}
 
-// top rim
-.Grid-inner:before {
-  content: '';
-  position: absolute;
-  width: calc(100% - 1em);
-  top: -0.5em;
-  left: -0.5em;
-  border-bottom: 0.5em solid $grid-color;
-  border-left: 1em solid transparent;
-  border-right: 1em solid transparent;
-  height: 0;
-  z-index: -1;
+  // top rim
+  &:before {
+    content: '';
+    position: absolute;
+    width: calc(100% - 1em);
+    top: -0.5em;
+    left: -0.5em;
+    border-bottom: 0.5em solid $grid-color;
+    border-left: 1em solid transparent;
+    border-right: 1em solid transparent;
+    height: 0;
+    z-index: -1;
+  }
 }

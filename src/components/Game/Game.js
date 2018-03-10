@@ -176,12 +176,12 @@ class Game extends Component {
   renderGameInfo() {
     return (
       this.state.board && (
-        <div className="Game-info">
+        <div className="Game--info">
           <PlayerInfo
             value={this.player1}
             isTheirTurn={this.state.player1Turn}
           />
-          <p className="Game-info-result">{this.getGameStatus()}</p>
+          <p className="Game--infoResult">{this.getGameStatus()}</p>
           <PlayerInfo
             value={this.player2}
             isTheirTurn={!this.state.player1Turn}

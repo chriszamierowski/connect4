@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Game from './Game'
-import Grid from './../Grid/Grid'
+import Grid from 'components/Grid/Grid'
 import { mount } from 'enzyme'
 
 let props
@@ -34,7 +34,7 @@ it('declares a winner when game is over', () => {
     board: [[null, null, 2, 2], [2, 1, 1, 2], [null, 1, 2, 2], [null, 1, 1, 1]]
   })
 
-  expect(thisGame.find('.Game-info-result').text()).toEqual('')
+  expect(thisGame.find('.Game--infoResult').text()).toEqual('')
 
   thisGame.setState({
     player1Turn: true,
@@ -42,7 +42,7 @@ it('declares a winner when game is over', () => {
     board: [[null, 1, 2, 2], [2, 1, 1, 2], [null, 1, 2, 2], [null, 1, 1, 1]]
   })
 
-  expect(thisGame.find('.Game-info-result').text()).toEqual('Player 1 Wins!')
+  expect(thisGame.find('.Game--infoResult').text()).toEqual('Player 1 Wins!')
 })
 
 it(`renders a <Grid /> component if there's a board`, () => {

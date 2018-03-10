@@ -11,7 +11,7 @@ class CircleSpace extends Component {
   render() {
     return (
       <div className="CircleSpace">
-        <span className="CircleSpace-hole">
+        <span className="CircleSpace--hole">
           {this.props.value && this.renderDisc()}
         </span>
       </div>

@@ -8,7 +8,7 @@
   pointer-events: none;
 }
 
-.Game-info {
+.Game--info {
   font-family: $font-heading;
   display: flex;
   align-items: center;
@@ -20,7 +20,7 @@
   }
 }
 
-.Game-info-result {
+.Game--infoResult {
   transition: transform 0.3s ease-in;
   transform: scale(2);
   order: 1;

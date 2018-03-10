@@ -6,38 +6,38 @@
   height: 100%;
   border-radius: 100%;
   position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    left: 20%;
+    top: 20%;
+    border-radius: 100%;
+    border-width: 1px;
+    border-style: inset none inset none;
+    border-top-color: transparentize($black, 0.5);
+    border-bottom-color: transparentize($white, 0.5);
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 102%;
+    height: 102%;
+    left: -1%;
+    top: -3%;
+    border-radius: 100%;
+    background-color: darken($player1, 10);
+    z-index: -1;
+  }
 }
 
 .Disc-player2 {
   background-color: $player2;
-}
 
-.Disc::before {
-  content: '';
-  position: absolute;
-  width: 60%;
-  height: 60%;
-  left: 20%;
-  top: 20%;
-  border-radius: 100%;
-  border-width: 1px;
-  border-style: inset none inset none;
-  border-top-color: transparentize($black, 0.5);
-  border-bottom-color: transparentize($white, 0.5);
-}
-
-.Disc::after {
-  content: '';
-  position: absolute;
-  width: 102%;
-  height: 102%;
-  left: -1%;
-  top: -3%;
-  border-radius: 100%;
-  background-color: darken($player1, 10);
-  z-index: -1;
-}
-
-.Disc-player2::after {
-  background-color: darken($player2, 10);
+  &:after {
+    background-color: darken($player2, 10);
+  }
 }

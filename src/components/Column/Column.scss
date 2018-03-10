@@ -7,35 +7,35 @@
   position: relative;
   z-index: -1;
   pointer-events: auto;
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: calc(100% - .5em);
+    top: -1.3em;
+    left: 0em;
+    border-top: 0.3em solid desaturate($grid-color--darker, 30);
+    border-left: 0.1em solid transparent;
+    border-right: 0.1em solid transparent;
+    height: 0;
+    z-index: -1;
+  }
+
+  &:first-child:before {
+    border-left: 0;
+  }
+
+  &:last-child:before {
+    border-right: 0;
+  }
 }
 
-.Column::before {
-  content: '';
-  position: absolute;
-  width: calc(100% - .5em);
-  top: -1.3em;
-  left: 0em;
-  border-top: 0.3em solid desaturate($grid-color--darker, 30);
-  border-left: 0.1em solid transparent;
-  border-right: 0.1em solid transparent;
-  height: 0;
-  z-index: -1;
-}
-
-.Column:first-child::before {
-  border-left: 0;
-}
-
-.Column:last-child::before {
-  border-right: 0;
-}
-
-.Column.Column--clickable {
+.Column--clickable {
   cursor: pointer;
-}
 
-.Column.Column--clickable:hover .Column--nextDisc {
-  opacity: 1;
+  &:hover .Column--nextDisc {
+    opacity: 1;
+  }
 }
 
 .Column--nextDisc {

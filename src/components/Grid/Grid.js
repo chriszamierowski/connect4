@@ -46,7 +46,7 @@ class Grid extends Component {
         }}
       >
         <div
-          className="Grid-inner"
+          className="Grid--inner"
           style={{
             height: this.state.constrainedSquareDimension * this.numRows + 'px',
             width:

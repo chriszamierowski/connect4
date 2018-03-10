@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Disc from './../Disc/Disc'
+import Disc from 'components/Disc/Disc'
 import CircleSpace from './CircleSpace'
 import { shallow } from 'enzyme'
 
