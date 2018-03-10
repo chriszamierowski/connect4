@@ -11,6 +11,10 @@
   justify-content: center;
   margin-bottom: 2em;
 
+  &:last-of-type {
+    margin-bottom: 1em;
+  }
+
   &.PlayerInfo-player2 {
     color: $player2;
 
@@ -43,6 +47,10 @@
 
   @media screen and (min-width: $screen-xs-min) {
     flex-direction: column;
+
+    &, &:last-of-type {
+      margin-bottom: 0.5em;
+    }
   }
 }
 
