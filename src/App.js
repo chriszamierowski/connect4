@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import Game from 'components/Game/Game'
 import About from 'components/About/About'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
 class App extends Component {
   previousLocation = this.props.location
@@ -30,7 +30,8 @@ class App extends Component {
       <div className="App">
         <Switch location={isModal ? this.previousLocation : location}>
           <Route path="/about" component={About} />
-          <Route component={Game} />
+          <Route path="/" exact component={Game} />
+          <Redirect from="*" to="/" />
         </Switch>
         {isModal ? <Route path="/about" component={About} /> : null}
       </div>

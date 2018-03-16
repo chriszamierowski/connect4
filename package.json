@@ -29,7 +29,7 @@
     "precommit": "lint-staged",
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
-    "deploy": "cd build && surge"
+    "deploy": "cd build && mv index.html 200.html && surge"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
