@@ -7,9 +7,11 @@
   outline: none;
   color: $black;
   box-shadow: 2px 2px 4px rgba($black, 0.5);
+  max-width: 90%;
 
   @media screen and (min-width: $screen-xs-min) {
     padding: 1.5em 3em;
+    max-width: 60%;
   }
 }
 

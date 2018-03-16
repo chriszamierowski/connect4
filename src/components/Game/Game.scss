@@ -60,3 +60,14 @@
     width: 100%;
   }
 }
+
+.Game--aboutLink {
+  position: absolute;
+  right: 0.2em;
+  bottom: 0.2em;
+  color: lighten($black, 10);
+
+  &:hover {
+    color: $black;
+  }
+}

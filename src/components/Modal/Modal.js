@@ -25,6 +25,7 @@ class Modal extends Component {
         className={`Modal--content ${this.props.className || ''}`}
         overlayClassName="Modal--overlay"
         closeTimeoutMS={1000}
+        onRequestClose={this.props.onRequestClose}
       >
         {this.props.children}
       </ReactModal>
@@ -35,7 +36,8 @@ class Modal extends Component {
 Modal.propTypes = {
   contentLabel: PropTypes.string,
   className: PropTypes.string,
-  isOpen: PropTypes.bool
+  isOpen: PropTypes.bool,
+  onRequestClose: PropTypes.func
 }
 
 export default Modal

@@ -5,6 +5,7 @@ import Modal from 'components/Modal/Modal'
 import Button from 'components/Button/Button'
 import Select from 'components/Select/Select'
 import PlayerInfo from 'components/PlayerInfo/PlayerInfo'
+import { Link } from 'react-router-dom'
 
 class Game extends Component {
   constructor(props) {
@@ -186,6 +187,15 @@ class Game extends Component {
             value={this.player2}
             isTheirTurn={!this.state.player1Turn}
           />
+          <Link
+            to={{
+              pathname: '/about',
+              state: { modal: true }
+            }}
+            className="Game--aboutLink"
+          >
+            About
+          </Link>
         </div>
       )
     )
